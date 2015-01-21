@@ -46,6 +46,22 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+def github_pending_status(parser, xml_parent, data):
+    """yaml: github_pending_status
+    Set the pending status of the build on Github.
+    Requires the Jenkins `GitHub Plugin.
+    <https://wiki.jenkins-ci.org/display/JENKINS/GitHub+Plugin>`_
+
+    Example:
+
+      builders:
+        - github_pending_status
+    """
+    ghpend = XML.SubElement(xml_parent, 'com.cloudbees.jenkins.'
+                   'GitHubSetCommitStatusBuilder')
+    XML.SubElement(ghpend, 'spec').text = ''
+
+
 def shell(parser, xml_parent, data):
     """yaml: shell
     Execute a shell command.
